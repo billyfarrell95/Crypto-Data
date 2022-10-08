@@ -1,0 +1,50 @@
+/****** reset *******/
+
+body {
+    margin: 0;
+    padding: 0;
+}
+/**** end reset ***/
+:root {
+    --primary-color: #242848;
+}
+.header {
+    background-color: var(--primary-color);
+    padding: 10px 0 10px 0;
+}
+.logo {
+    height: 40px;
+    width: auto;
+}
+.container {
+    max-width: 1400px;
+    margin-inline: auto;
+    padding-inline: 30px;
+}
+main {
+    padding-top: 80px;
+}
+.main {
+    display: flex;
+    flex-grow: 1;
+    flex-basis: auto;
+    gap: 60px;
+} 
+.col-1 {
+    width: 100%;
+    background-color: lightgray;
+}
+.col-2 {
+    width: 100%;
+    background-color: lightgray;
+}
+.search-container {
+    display: flex;
+    flex-basis: auto;
+    flex-grow: 1;
+    gap: 15px;
+}
+
+.search-container input {
+    width: 100%;
+}

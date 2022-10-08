@@ -12,13 +12,16 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <div class="container">
-            <header>
-                <img src="images/logo.png" alt="">
-            </header>
-            <main>
+        <header class="header">
+            <div class="container">
+                <img src="images/logo.png" alt="" class="logo">
+            </div>
+        </header>
+            <main class="container">
+                <h1>Search for, view, and save crypocurrency assets data</h1>
                 <section class="main">
                     <div class="col-1">
+                        <h2>Search for Crypto Currencies:</h2>
                         <div class="search-container">
                             <input type="text" name="searchBar" id="searchBar" placeholder="Search coin name">
                             <button class="search-btn" id="search-btn">Search</button>
@@ -28,14 +31,13 @@
                         </div>
                     </div>
                     <div class="col-2">
-                        <p>Saved Crypto Currencies <span class="saved-qty" id="saved-qty">(0)</span></p>
+                        <h2>Saved Crypto Currencies <span class="saved-qty" id="saved-qty">(0)</span></h2>
                         <div class="saved">
                             <p><i>Saved crypto currencies will display here</i></p>
                         </div>
                     </div>
                 </section>
             </main>
-        </div>
         <script src="app.js" async defer></script>
     </body>
 </html> 
