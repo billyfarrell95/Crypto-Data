@@ -8,7 +8,6 @@
         <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
         <meta name="description" content="Search for, view, and save crypocurrency assets data">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="reset.css">
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
@@ -22,19 +21,19 @@
                 <section class="main">
                     <div class="col-1">
                         <h2>Search for Crypto Currencies:</h2>
-                        <div class="search-container">
-                            <input type="text" name="searchBar" id="searchBar" placeholder="Search coin name">
-                            <button class="search-btn" id="search-btn" onclick="search">Search</button>
-                        </div>
+                            <div class="search-container">
+                                <input type="text" name="search-bar" id="search-bar" placeholder="Search coin name" value="">
+                                <button class="search-btn" id="search-btn" onclick="search()">Search</button>
+                            </div>
                         <p><i>Searched crypto currencies will display here</i></p>
-                        <div class="search-results">
+                        <div class="search-result" id="search-result">
                             
                         </div>
                     </div>
                     <div class="col-2">
                         <h2>Saved Crypto Currencies <span class="saved-qty" id="saved-qty">(0)</span></h2>
                         <p><i>Saved crypto currencies will display here</i></p>
-                        <div class="saved">
+                        <div class="saved" id="saved">
                             
                         </div>
                     </div>
