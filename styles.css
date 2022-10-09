@@ -5,6 +5,10 @@ body {
     padding: 0;
 }
 /**** end reset ***/
+
+html {
+    font-family: arial, Arial, Helvetica, sans-serif;
+}
 :root {
     --primary-color: #242848;
 }
@@ -32,11 +36,9 @@ main {
 } 
 .col-1 {
     width: 100%;
-    background-color: lightgray;
 }
 .col-2 {
     width: 100%;
-    background-color: lightgray;
 }
 .search-container {
     display: flex;
