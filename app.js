@@ -16,11 +16,11 @@ async function search() {
 
 
 function generateCard(searchResult) {
-    let name = searchResult.data.name;
-    let symbol = searchResult.data.symbol;
-    let priceUSD = searchResult.data.priceUSD;
-    let marketCap = searchResult.data.marketCapUsd;
-    let supply = searchResult.data.supply;
-    console.log(marketCap);
-    console.log(searchResult)
+    let cardData = {
+        name: searchResult.data.name,
+        symbol: searchResult.data.symbol,
+        priceUSD: searchResult.data.priceUSD,
+        marketCap: searchResult.data.marketCapUsd,
+        supply: searchResult.data.supply
+    };
 }
