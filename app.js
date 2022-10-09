@@ -1,5 +1,6 @@
 let searchBar = document.querySelector("#search-bar");
-let body = document.body;
+let resultCard = document.querySelector(".results");
+let resultName = document.querySelector("")
 
 async function search() {
     try {
