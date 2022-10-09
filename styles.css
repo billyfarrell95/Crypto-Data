@@ -46,7 +46,24 @@ main {
     flex-grow: 1;
     gap: 15px;
 }
-
 .search-container input {
     width: 100%;
+}
+.result-card {
+    background-color: #F1F1F1;
+    padding: 20px;
+    display: flex;
+}
+.card-title {
+    display: flex;
+}
+.card-title p:nth-of-type(1) {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+}
+.card-title p:nth-of-type(2) {
+    font-size: 14px;
+    text-transform: uppercase;
+    margin: 0;
 }

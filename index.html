@@ -25,7 +25,23 @@
                                 <input type="text" name="search-bar" id="search-bar" placeholder="Search coin name" value="">
                                 <button class="search-btn" id="search-btn" onclick="search()">Search</button>
                             </div>
-                        <p><i>Searched crypto currencies will display here</i></p>
+                            <div class="results" id="results">
+                                <p><i>Searched crypto currencies will display here</i></p>
+                                <div class="result-card">
+                                    <div class="info">
+                                        <div class="card-title">
+                                            <img src=".">
+                                            <div>
+                                                <p id="name">Bitcoin</p>
+                                                <p id="symbol">BTC</p>
+                                            </div>
+                                        </div>
+                                        <p><b>Price:</b> <span id="price"></span></p>
+                                        <p><b>Market Cap:</b> <span id="market-cap"></span></p>
+                                        <p><b>Supply:</b> <span id="supply"></span></p>
+                                    </div>
+                                </div>
+                            </div>
                         <div class="search-result" id="search-result">
                             
                         </div>

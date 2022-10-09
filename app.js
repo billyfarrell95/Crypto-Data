@@ -23,5 +23,3 @@ function generateCard(searchResult) {
     console.log(marketCap);
     console.log(searchResult)
 }
-
-// https://cryptoicons.org/
