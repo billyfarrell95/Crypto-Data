@@ -6,6 +6,7 @@ let resultSymbol = document.querySelector(".symbol");
 let resultPrice = document.querySelector(".price");
 let resultMarketCap = document.querySelector(".market-cap");
 let resultSupply = document.querySelector(".supply");
+let savedItems = document.querySelector(".saved");
 
 resultCard.style.display = "none";
 
@@ -24,17 +25,19 @@ async function search() {
 }
 
 function generateCard(searchResult) {
-    let cardData = {
-        name: searchResult.data.name,
-        symbol: searchResult.data.symbol,
-        priceUSD: searchResult.data.priceUsd,
-        marketCap: searchResult.data.marketCapUsd,
-        supply: searchResult.data.supply
-    };
-    /* console.log(cardData); */
-    resultName.innerHTML = cardData.name;
-    resultSymbol.innerHTML = cardData.symbol;
-    resultPrice.innerHTML = cardData.priceUSD;
-    resultMarketCap.innerHTML = cardData.marketCap;
-    resultSupply.innerHTML = cardData.supply;
+    resultName.innerHTML = searchResult.data.name;
+    resultSymbol.innerHTML = searchResult.data.symbol;
+    resultPrice.innerHTML = searchResult.data.priceUsd;
+    resultMarketCap.innerHTML = searchResult.data.marketCapUsd;
+    resultSupply.innerHTML = searchResult.data.supply;
+
+    let newResultCard = document.querySelector(".result-card");
+    saveResult(newResultCard);
+}
+
+function saveResult(saveResult) {
+    let newSave = document.createElement("div");
+    newSave.classList.add("result-card");
+    newSave.innerHTML = saveResult.innerHTML;
+    savedItems.append(newSave);
 }
