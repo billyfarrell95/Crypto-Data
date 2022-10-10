@@ -49,10 +49,12 @@ main {
 .search-container input {
     width: 100%;
 }
+.results {
+    padding-top: 30px;
+}
 .result-card {
     background-color: #F1F1F1;
     padding: 20px;
-    display: none;
 }
 .card-title {
     display: flex;
