@@ -55,6 +55,8 @@ main {
 .result-card {
     background-color: #F1F1F1;
     padding: 20px;
+    display: flex;
+    justify-content: space-between;
 }
 .card-title {
     display: flex;
