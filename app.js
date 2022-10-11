@@ -9,6 +9,7 @@ let resultPrice = document.querySelector(".price");
 let resultMarketCap = document.querySelector(".market-cap");
 let resultSupply = document.querySelector(".supply");
 let savedItems = document.querySelector(".saved");
+let saveId = 0;
 
 let searchedData = {
     name: '',
@@ -47,7 +48,7 @@ async function search() {
             </div>
             </div>
         `;
-        results.innerHTML += searchContent;
+        results.innerHTML = searchContent;
     }
     catch {
         console.error(error);
@@ -55,6 +56,8 @@ async function search() {
 }
 
 function save() {
+    let saveId = 0;
+    saveId++;
     const savedContent = `
             <div class="result-card">
             <div class="info">
@@ -69,8 +72,15 @@ function save() {
                 <p><b>Market Cap:</b> <span class="market-cap">${searchedData.marketCap}</span></p>
                 <p><b>Supply:</b> <span class="supply">${searchedData.supply}</span></p>
             </div>
+            <div class="links">
+                <button class="save-btn" onclick="remove()">Remove</button>
+            </div>
             </div>
         `;
     savedItems.innerHTML += savedContent;
     results.innerHTML = "";
+}
+
+function remove() {
+
 }

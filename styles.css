@@ -51,6 +51,9 @@ main {
 }
 .results {
     padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 .result-card {
     background-color: #F1F1F1;
@@ -70,4 +73,10 @@ main {
     font-size: 14px;
     text-transform: uppercase;
     margin: 0;
+}
+
+.saved {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
