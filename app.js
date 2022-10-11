@@ -72,4 +72,5 @@ function save() {
             </div>
         `;
     savedItems.innerHTML += savedContent;
+    results.innerHTML = "";
 }
