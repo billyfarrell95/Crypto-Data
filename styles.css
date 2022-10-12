@@ -80,3 +80,6 @@ main {
     flex-direction: column;
     gap: 20px;
 }
+.results-msg {
+    font-style: italic;
+}

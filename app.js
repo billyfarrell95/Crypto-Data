@@ -2,7 +2,7 @@ let searchBar = document.querySelector("#search-bar");
 let searchBtn = document.querySelector("#search-btn")
 let results = document.querySelector(".results");
 let resultCard = document.querySelector(".result-card");
-let defaultResultsMsg = document.querySelector(".default-results-msg");
+let resultsMsg = document.querySelector(".results-msg");
 let resultName = document.querySelector(".name");
 let resultSymbol = document.querySelector(".symbol");
 let resultPrice = document.querySelector(".price");
@@ -24,6 +24,9 @@ async function search() {
         let response = await fetch(`https://api.coincap.io/v2/assets/${searchValue}`);
         let asset = await response.json();
         if (asset.error === `${searchValue} not found`) {
+            let msgText = `${searchValue} not found`;
+            resultsMsg.innerHTML = msgText;
+            searchBar.value = "";
             console.log(`${searchValue} not found`);
         } else {
             searchedData.name = asset.data.name;
@@ -50,7 +53,8 @@ async function search() {
                 </div>
                 </div>
             `;
-            results.innerHTML = searchContent;
+            resultsMsg.remove();
+            results.innerHTML += searchContent;
     }
         }
         
