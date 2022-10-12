@@ -60,6 +60,9 @@ main {
     display: flex;
     justify-content: space-between;
 }
+.results-msg {
+    font-style: italic;
+}
 .card-title {
     display: flex;
 }
@@ -73,12 +76,11 @@ main {
     text-transform: uppercase;
     margin: 0;
 }
-
 .saved {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
-.results-msg {
+.save-msg {
     font-style: italic;
 }

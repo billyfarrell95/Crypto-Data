@@ -10,16 +10,27 @@ let resultPrice = document.querySelector(".price");
 let resultMarketCap = document.querySelector(".market-cap");
 let resultSupply = document.querySelector(".supply");
 let savedItems = document.querySelector(".saved");
+let saveMsg = document.querySelector(".save-msg");
+let defaultSaveMsg = "Saved crypto currencies will display here";
+
+/* functionality left add:
+remove saved items
+refresh saved items data
+show timestamp on the saved items 
+pull in images for the coin icons
+update the number of items saved qty*/
 
 let searchedData = {
     name: '',
     symbol: '',
     price: '',
     marketCap: '',
-    supply: ''
+    supply: '',
+    id: ''
 }
 
 resultsMsg.innerHTML = defaultResultMsg;
+saveMsg.innerHTML = defaultSaveMsg;
 
 async function search() {
     try {
@@ -38,6 +49,7 @@ async function search() {
             searchedData.price = asset.data.priceUsd;
             searchedData.marketCap = asset.data.marketCapUsd;
             searchedData.supply = asset.data.supply;
+            searchedData.id = asset.data.id;
             const searchContent = `
                 <div class="result-card">
                 <div class="info">
@@ -90,7 +102,7 @@ searchBar.addEventListener("keydown", (event) => {
 
 function save() {
     const savedContent = `
-            <div class="result-card">
+            <div class="result-card" id="${searchedData.id}">
             <div class="info">
                 <div class="card-title">
                     <img src=".">
@@ -104,15 +116,21 @@ function save() {
                 <p><b>Supply:</b> <span class="supply">${searchedData.supply}</span></p>
             </div>
             <div class="links">
-                <button class="save-btn" onclick="remove()">Remove</button>
+                <button class="save-btn-${searchedData.id}" onclick="remove(${searchedData.id})">Remove</button>
             </div>
             </div>
         `;
     savedItems.innerHTML += savedContent;
     resultsMsg.innerHTML = defaultResultMsg;
     results.innerHTML = "";
+    saveMsg.innerHTML = "";
+/*     document.getElementsByClassName(`save-btn-${searchedData.id}`).addEventListener("click", function() {
+        remove(searchedData.id);
+    }); */
 }
 
-function remove() {
-
+function remove(id) {
+    console.log(id);
+    let toRemove = document.getElementById(id);
+    toRemove.remove();
 }
