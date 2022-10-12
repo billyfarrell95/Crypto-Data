@@ -23,32 +23,37 @@ async function search() {
         let searchValue = searchBar.value;
         let response = await fetch(`https://api.coincap.io/v2/assets/${searchValue}`);
         let asset = await response.json();
-        searchedData.name = asset.data.name;
-        searchedData.symbol = asset.data.symbol;
-        searchedData.price = asset.data.priceUsd;
-        searchedData.marketCap = asset.data.marketCapUsd;
-        searchedData.supply = asset.data.supply;
-        const searchContent = `
-            <div class="result-card">
-            <div class="info">
-                <div class="card-title">
-                    <img src=".">
-                    <div>
-                        <p class="name">${searchedData.name}</p>
-                        <p class="symbol">${searchedData.symbol}</p>
+        if (asset.error === `${searchValue} not found`) {
+            console.log(`${searchValue} not found`);
+        } else {
+            searchedData.name = asset.data.name;
+            searchedData.symbol = asset.data.symbol;
+            searchedData.price = asset.data.priceUsd;
+            searchedData.marketCap = asset.data.marketCapUsd;
+            searchedData.supply = asset.data.supply;
+            const searchContent = `
+                <div class="result-card">
+                <div class="info">
+                    <div class="card-title">
+                        <img src=".">
+                        <div>
+                            <p class="name">${searchedData.name}</p>
+                            <p class="symbol">${searchedData.symbol}</p>
+                        </div>
                     </div>
+                    <p><b>Price:</b> <span class="price">${searchedData.price}</span></p>
+                    <p><b>Market Cap:</b> <span class="market-cap">${searchedData.marketCap}</span></p>
+                    <p><b>Supply:</b> <span class="supply">${searchedData.supply}</span></p>
                 </div>
-                <p><b>Price:</b> <span class="price">${searchedData.price}</span></p>
-                <p><b>Market Cap:</b> <span class="market-cap">${searchedData.marketCap}</span></p>
-                <p><b>Supply:</b> <span class="supply">${searchedData.supply}</span></p>
-            </div>
-            <div class="links">
-                <button class="save-btn" onclick="save()">Save</button>
-            </div>
-            </div>
-        `;
-        results.innerHTML = searchContent;
+                <div class="links">
+                    <button class="save-btn" onclick="save()">Save</button>
+                </div>
+                </div>
+            `;
+            results.innerHTML = searchContent;
     }
+        }
+        
     catch {
         console.error(error);
     }
