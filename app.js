@@ -24,8 +24,9 @@ async function search() {
         let response = await fetch(`https://api.coincap.io/v2/assets/${searchValue}`);
         let asset = await response.json();
         if (asset.error === `${searchValue} not found`) {
-            let msgText = `${searchValue} not found`;
+            let msgText = `${searchValue} not found`; 
             resultsMsg.innerHTML = msgText;
+            results.innerHTML = "";
             searchBar.value = "";
             console.log(`${searchValue} not found`);
         } else {
@@ -53,9 +54,9 @@ async function search() {
                 </div>
                 </div>
             `;
-            resultsMsg.remove();
-            /* results.innerHTML += searchContent; */
-            results.insertAdjacentHTML('afterbegin', searchContent)
+            resultsMsg.innerHTML = `${searchedData.name} Data`;
+            searchBar.value = "";
+            results.innerHTML = searchContent;
     }
         }
         

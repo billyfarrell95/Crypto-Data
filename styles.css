@@ -50,7 +50,6 @@ main {
     width: 100%;
 }
 .results {
-    padding-top: 30px;
     display: flex;
     flex-direction: column;
     gap: 20px;
