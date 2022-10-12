@@ -3,6 +3,7 @@ let searchBtn = document.querySelector("#search-btn")
 let results = document.querySelector(".results");
 let resultCard = document.querySelector(".result-card");
 let resultsMsg = document.querySelector(".results-msg");
+let defaultResultMsg = "Searched crypto currencies will display here";
 let resultName = document.querySelector(".name");
 let resultSymbol = document.querySelector(".symbol");
 let resultPrice = document.querySelector(".price");
@@ -17,6 +18,8 @@ let searchedData = {
     marketCap: '',
     supply: ''
 }
+
+resultsMsg.innerHTML = defaultResultMsg;
 
 async function search() {
     try {
@@ -59,17 +62,29 @@ async function search() {
             results.innerHTML = searchContent;
     }
         }
-        
     catch {
         console.error(error);
     }
+}
+
+searchBar.addEventListener("keyup", () => {
+    if (results.innerHTML != "" && searchBar.value != "") {
+        results.innerHTML = "";
+        resultsMsg.innerHTML = defaultResultMsg;
+    } else {
+        return;
+    }
+})
+
+if (results.innerHTML != "" && searchBar.value != "") {
+    results.innerHTML = "";
 }
 
 searchBar.addEventListener("keydown", (event) => {
     if (event.keyCode === 13) {
         search();
     }
-    return;
+    return
   });
 
 
