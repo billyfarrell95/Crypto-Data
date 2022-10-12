@@ -54,7 +54,8 @@ async function search() {
                 </div>
             `;
             resultsMsg.remove();
-            results.innerHTML += searchContent;
+            /* results.innerHTML += searchContent; */
+            results.insertAdjacentHTML('afterbegin', searchContent)
     }
         }
         
