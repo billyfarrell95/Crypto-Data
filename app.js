@@ -65,6 +65,14 @@ async function search() {
     }
 }
 
+searchBar.addEventListener("keydown", (event) => {
+    if (event.keyCode === 13) {
+        search();
+    }
+    return;
+  });
+
+
 function save() {
     const savedContent = `
             <div class="result-card">
