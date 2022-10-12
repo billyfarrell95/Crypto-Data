@@ -109,6 +109,7 @@ function save() {
             </div>
         `;
     savedItems.innerHTML += savedContent;
+    resultsMsg.innerHTML = defaultResultMsg;
     results.innerHTML = "";
 }
 
