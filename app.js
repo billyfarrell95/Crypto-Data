@@ -32,6 +32,7 @@ let searchedData = {
 resultsMsg.innerHTML = defaultResultMsg;
 saveMsg.innerHTML = defaultSaveMsg;
 
+// pull searched crypto currency data and display it
 async function search() {
     try {
         let searchValue = searchBar.value;
@@ -79,6 +80,7 @@ async function search() {
     }
 }
 
+// clears search result and sets default search message when enter new crypto coin
 searchBar.addEventListener("keyup", () => {
     if (results.innerHTML != "" && searchBar.value != "") {
         results.innerHTML = "";
@@ -88,10 +90,7 @@ searchBar.addEventListener("keyup", () => {
     }
 })
 
-if (results.innerHTML != "" && searchBar.value != "") {
-    results.innerHTML = "";
-}
-
+// search via pressing enter when search input is active
 searchBar.addEventListener("keydown", (event) => {
     if (event.keyCode === 13) {
         search();
@@ -99,7 +98,7 @@ searchBar.addEventListener("keydown", (event) => {
     return
   });
 
-
+// save the search crypto asset
 function save() {
     const savedContent = `
             <div class="result-card" id="${searchedData.id}">
@@ -129,6 +128,7 @@ function save() {
     }); */
 }
 
+//remove a certain crypto asset from saved list 
 function remove(id) {
     console.log(id);
     let toRemove = document.getElementById(id);
