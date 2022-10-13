@@ -35,11 +35,14 @@ saveMsg.innerHTML = defaultSaveMsg;
 // pull searched crypto currency data and display it
 async function search() {
     try {
-        let searchValue = searchBar.value;
+        let inputValue = searchBar.value;
+        //adds dashed in between multi-name currencies
+        let searchValue = inputValue.split(" ").join("-");
         let response = await fetch(`https://api.coincap.io/v2/assets/${searchValue}`);
         let asset = await response.json();
         if (asset.error === `${searchValue} not found`) {
-            let msgText = `${searchValue} not found`; 
+            // remove hyphens from "asset not found message"
+            let msgText = `${searchValue.replace(/-/g," ")} not found`; 
             resultsMsg.innerHTML = msgText;
             results.innerHTML = "";
             searchBar.value = "";
@@ -115,7 +118,7 @@ function save() {
                 <p><b>Supply:</b> <span class="supply">${searchedData.supply}</span></p>
             </div>
             <div class="links">
-                <button class="save-btn-${searchedData.id}" onclick="remove(${searchedData.id})">Remove</button>
+                <button class="save-btn-${searchedData.id}" onclick="remove()">Remove</button>
             </div>
             </div>
         `;
@@ -123,14 +126,14 @@ function save() {
     resultsMsg.innerHTML = defaultResultMsg;
     results.innerHTML = "";
     saveMsg.innerHTML = "";
-/*     document.getElementsByClassName(`save-btn-${searchedData.id}`).addEventListener("click", function() {
-        remove(searchedData.id);
-    }); */
 }
 
 //remove a certain crypto asset from saved list 
-function remove(id) {
-    console.log(id);
-    let toRemove = document.getElementById(id);
-    toRemove.remove();
+
+function remove() {
+    if(savedItems.innerHTML != "") {
+        savedItems.innerHTML = "";
+    } else {
+        console.log("no saved Items")
+    }
 }
