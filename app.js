@@ -12,13 +12,15 @@ let resultSupply = document.querySelector(".supply");
 let savedItems = document.querySelector(".saved");
 let saveMsg = document.querySelector(".save-msg");
 let defaultSaveMsg = "Saved crypto currencies will display here";
+let removeId = 0;
 
 /* functionality left add:
 remove saved items
 refresh saved items data
 show timestamp on the saved items 
 pull in images for the coin icons
-update the number of items saved qty*/
+update the number of items saved qty
+ability to search coin symbols e.g. BTC */
 
 let searchedData = {
     name: '',
@@ -57,7 +59,7 @@ async function search() {
             searchedData.supply = asset.data.supply;
             searchedData.id = asset.data.id;
             const searchContent = `
-                <div class="result-card">
+                <div class="result-card" id="${searchedData.id}">
                 <div class="info">
                     <div class="card-title">
                         <img src=".">
@@ -71,17 +73,19 @@ async function search() {
                     <p><b>Supply:</b> <span class="supply">${searchedData.supply}</span></p>
                 </div>
                 <div class="links">
-                    <button class="save-btn" onclick="save()">Save</button>
+                    <button class="btn" onclick="save()">Save</button>
                 </div>
                 </div>
             `;
             resultsMsg.innerHTML = `${searchedData.name} Data`;
             searchBar.value = "";
             results.innerHTML = searchContent;
+            /* searchedItems.unshift(searchContent);
+            console.log(searchedItems); */
     }
         }
     catch {
-        console.error(error);
+        console.log("error");
     }
 }
 
@@ -105,8 +109,9 @@ searchBar.addEventListener("keydown", (event) => {
 
 // save the search crypto asset
 function save() {
+    removeId++;
     const savedContent = `
-            <div class="result-card" id="${searchedData.id}">
+            <div class="result-card" id="${removeId}">
             <div class="info">
                 <div class="card-title">
                     <img src=".">
@@ -133,7 +138,7 @@ function save() {
 }
 
 //remove a certain crypto asset from saved list 
-
+/* 
 function remove() {
     
-}
+} */
