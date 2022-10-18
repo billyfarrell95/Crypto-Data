@@ -29,6 +29,8 @@ let searchedData = {
     id: ''
 }
 
+let savedList = [];
+
 resultsMsg.innerHTML = defaultResultMsg;
 saveMsg.innerHTML = defaultSaveMsg;
 
@@ -118,7 +120,7 @@ function save() {
                 <p><b>Supply:</b> <span class="supply">${searchedData.supply}</span></p>
             </div>
             <div class="links">
-                <button class="save-btn-${searchedData.id}" onclick="remove()">Remove</button>
+                <button class="save-btn" id="${searchedData.id}" onclick="remove()">Remove</button>
             </div>
             </div>
         `;
@@ -126,14 +128,12 @@ function save() {
     resultsMsg.innerHTML = defaultResultMsg;
     results.innerHTML = "";
     saveMsg.innerHTML = "";
+    let saveItem = searchedData.id;
+    savedList.push(saveItem);
 }
 
 //remove a certain crypto asset from saved list 
 
 function remove() {
-    if(savedItems.innerHTML != "") {
-        savedItems.innerHTML = "";
-    } else {
-        console.log("no saved Items")
-    }
+    
 }
