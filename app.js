@@ -138,7 +138,7 @@ function save() {
 }
 
 //remove a certain crypto asset from saved list 
-/* 
+
 function remove() {
     
-} */
+}
