@@ -12,7 +12,6 @@ let resultSupply = document.querySelector(".supply");
 let savedItems = document.querySelector(".saved");
 let saveMsg = document.querySelector(".save-msg");
 let defaultSaveMsg = "Saved crypto currencies will display here";
-let removeId = 0;
 
 /* functionality left add:
 remove saved items
@@ -20,7 +19,8 @@ refresh saved items data
 show timestamp on the saved items 
 pull in images for the coin icons
 update the number of items saved qty
-ability to search coin symbols e.g. BTC */
+ability to search coin symbols e.g. BTC
+fix "undefined" if search button is clicked field is empty */
 
 let searchedData = {
     name: '',
@@ -80,8 +80,6 @@ async function search() {
             resultsMsg.innerHTML = `${searchedData.name} Data`;
             searchBar.value = "";
             results.innerHTML = searchContent;
-            /* searchedItems.unshift(searchContent);
-            console.log(searchedItems); */
     }
         }
     catch {
@@ -109,9 +107,8 @@ searchBar.addEventListener("keydown", (event) => {
 
 // save the search crypto asset
 function save() {
-    removeId++;
     const savedContent = `
-            <div class="result-card" id="${removeId}">
+            <div class="result-card" id="${searchedData.id}">
             <div class="info">
                 <div class="card-title">
                     <img src=".">
@@ -125,7 +122,7 @@ function save() {
                 <p><b>Supply:</b> <span class="supply">${searchedData.supply}</span></p>
             </div>
             <div class="links">
-                <button class="save-btn" id="${searchedData.id}" onclick="remove()">Remove</button>
+                <button class="save-btn ${searchedData.id}">Remove</button>
             </div>
             </div>
         `;
@@ -133,12 +130,25 @@ function save() {
     resultsMsg.innerHTML = defaultResultMsg;
     results.innerHTML = "";
     saveMsg.innerHTML = "";
+    //save the id of the recently saved item and add it to the Saved List
     let saveItem = searchedData.id;
     savedList.push(saveItem);
+    //delete functionality
+    deleteItem()
 }
 
-//remove a certain crypto asset from saved list 
+//delete saved items from the list
 
-function remove() {
-    
+function deleteItem() {
+console.log(savedList)
+    for (let i = 0; i <= savedList.length - 1; i++) {
+        console.log(savedList[i])
+        let el = document.getElementsByClassName(savedList[i])[0];
+        console.log(el);
+        el.addEventListener('click', () => {
+            let del = document.getElementById(savedList[i]);
+            console.log(del)
+            del.remove();
+        })
+    }
 }
