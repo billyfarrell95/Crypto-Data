@@ -13,6 +13,7 @@ let savedItems = document.querySelector(".saved");
 let saveMsg = document.querySelector(".save-msg");
 let defaultSaveMsg = "Saved crypto currencies will display here";
 let saveQty = document.getElementById("saved-qty");
+let saveQtyValue = 0;
 
 /* functionality left add:
 refresh saved items data
@@ -135,19 +136,21 @@ function save() {
     //save the id of the recently saved item and add it to the Saved List
     let saveItem = searchedData.id;
     savedList.push(saveItem);
-    updateSaveQty();
+    increaseSaveQty();
     //delete functionality
     deleteItem();
-    
 }
 
 //update the quantity of saved assets 
 
-function updateSaveQty() {
-    saveQty.innerHTML = savedList.length;
+function increaseSaveQty() {
+    saveQty.innerHTML = saveQtyValue += 1;
 }
 
 //delete saved items from the list
+
+// ebug delete items after save item, remove from save, and then save more
+// remove items from the savedList[] after deleting from DOM
 
 function deleteItem() {
 console.log(savedList)
@@ -160,10 +163,12 @@ console.log(savedList)
             let del = document.getElementById(savedList[i]);
             console.log(del)
             del.remove();
-            let index = savedList.indexOf(i);
-            savedList.splice(index, 1);
-            updateSaveQty();
-            console.log(i)
+            decreaseSaveQty();
+            /* saveQty.innerHTML = "321"; */
         })
     } 
+}
+
+function decreaseSaveQty() {
+    saveQty.innerHTML = saveQtyValue -= 1;
 }
