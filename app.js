@@ -136,7 +136,7 @@ function save() {
     //update saved qty
     updateSaveQty();
     //delete functionality
-    deleteItem()
+    deleteItem();
 }
 
 //update the quantity of saved assets 
@@ -158,6 +158,7 @@ console.log(savedList)
             console.log(del)
             del.remove();
             
+            saveQty.innerHTML = savedList.length;
         })
     } 
 }
