@@ -17,7 +17,7 @@ let saveQty = document.getElementById("saved-qty");
 /* functionality left add:
 refresh saved items data
 show timestamp on the saved items 
-pull in images for the coin icons
+pull in images for the coin icons: https://cryptoicons.org/
 update the number of items saved qty
 ability to search coin symbols e.g. BTC
 fix "undefined" if search button is clicked field is empty */
@@ -135,10 +135,10 @@ function save() {
     //save the id of the recently saved item and add it to the Saved List
     let saveItem = searchedData.id;
     savedList.push(saveItem);
-    //update saved qty
     updateSaveQty();
     //delete functionality
     deleteItem();
+    
 }
 
 //update the quantity of saved assets 
@@ -153,14 +153,17 @@ function deleteItem() {
 console.log(savedList)
     for (let i = 0; i <= savedList.length - 1; i++) {
         console.log(savedList[i])
+        console.log(i);
         let el = document.getElementsByClassName(savedList[i])[0];
         console.log(el);
         el.addEventListener('click', () => {
             let del = document.getElementById(savedList[i]);
             console.log(del)
             del.remove();
-            
-            saveQty.innerHTML = savedList.length;
+            let index = savedList.indexOf(i);
+            savedList.splice(index, 1);
+            updateSaveQty();
+            console.log(i)
         })
     } 
 }
