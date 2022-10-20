@@ -150,8 +150,11 @@ function increaseSaveQty() {
     saveQty.innerHTML = saveQtyValue += 1;
 }
 
-//delete saved items from the list
+function decreaseSaveQty() {
+    saveQty.innerHTML = saveQtyValue -= 1;
+}
 
+//delete saved items from the list
 
 clearBtn.addEventListener("click", function clearSave(){
     savedList = [];
@@ -161,6 +164,3 @@ clearBtn.addEventListener("click", function clearSave(){
     }
 })
 
-function decreaseSaveQty() {
-    saveQty.innerHTML = saveQtyValue -= 1;
-}
