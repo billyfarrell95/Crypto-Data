@@ -12,9 +12,9 @@ let resultSupply = document.querySelector(".supply");
 let savedItems = document.querySelector(".saved");
 let saveMsg = document.querySelector(".save-msg");
 let defaultSaveMsg = "Saved crypto currencies will display here";
+let saveQty = document.getElementById("saved-qty");
 
 /* functionality left add:
-remove saved items
 refresh saved items data
 show timestamp on the saved items 
 pull in images for the coin icons
@@ -133,8 +133,16 @@ function save() {
     //save the id of the recently saved item and add it to the Saved List
     let saveItem = searchedData.id;
     savedList.push(saveItem);
+    //update saved qty
+    updateSaveQty();
     //delete functionality
     deleteItem()
+}
+
+//update the quantity of saved assets 
+
+function updateSaveQty() {
+    saveQty.innerHTML = savedList.length;
 }
 
 //delete saved items from the list
@@ -149,6 +157,7 @@ console.log(savedList)
             let del = document.getElementById(savedList[i]);
             console.log(del)
             del.remove();
+            
         })
-    }
+    } 
 }
