@@ -1,5 +1,6 @@
 let searchBar = document.querySelector("#search-bar");
 let searchBtn = document.querySelector("#search-btn");
+let clearBtn = document.querySelector("#clear-btn");
 let results = document.querySelector(".results");
 let resultCard = document.querySelector(".result-card");
 let resultsMsg = document.querySelector(".results-msg");
@@ -15,13 +16,15 @@ let defaultSaveMsg = "Saved crypto currencies will display here";
 let saveQty = document.getElementById("saved-qty");
 let saveQtyValue = 0;
 
+
 /* functionality left add:
 refresh saved items data
 show timestamp on the saved items 
 pull in images for the coin icons: https://cryptoicons.org/
-update the number of items saved qty
+DONE - update the number of items saved qty
 ability to search coin symbols e.g. BTC
-fix "undefined" if search button is clicked field is empty */
+fix "undefined" if search button is clicked field is empty
+delete items from saved list */
 
 let searchedData = {
     name: '',
@@ -34,9 +37,10 @@ let searchedData = {
 
 let savedList = [];
 
-// set the default results and save messages
+// default states
 resultsMsg.innerHTML = defaultResultMsg;
 saveMsg.innerHTML = defaultSaveMsg;
+clearBtn.disabled = true;
 
 // pull searched crypto currency data and display it
 async function search() {
@@ -137,8 +141,7 @@ function save() {
     let saveItem = searchedData.id;
     savedList.push(saveItem);
     increaseSaveQty();
-    //delete functionality
-    deleteItem();
+    clearBtn.disabled = false;
 }
 
 //update the quantity of saved assets 
@@ -149,39 +152,14 @@ function increaseSaveQty() {
 
 //delete saved items from the list
 
-// ebug delete items after save item, remove from save, and then save more
-// remove items from the savedList[] after deleting from DOM
 
-function deleteItem() {
-console.log(savedList)
-    for (let i = 0; i <= savedList.length - 1; i++) {
-        console.log(savedList[i])
-        console.log(i);
-        let el = document.getElementsByClassName(savedList[i])[0];
-        console.log(el);
-        let del = document.getElementById(savedList[i]);
-        el.addEventListener('click', () => {
-            console.log(i);
-            console.log(savedList[i]);
-            del.remove();
-            savedList.splice(savedList.indexOf(savedList[i]), 1);
-            decreaseSaveQty();
-            /* el.removeEventListener("click",); */
-        })
-   /*      function addEvent() {
-            console.log(i);
-            console.log(savedList[i]);
-            let del = document.getElementById(savedList[i]);
-            console.log(del)
-            del.remove();
-            savedList.splice(savedList.indexOf(savedList[i]), 1);
-            decreaseSaveQty();
-        }
-        el.addEventListener("click", addEvent);
-        el.removeEventListener("click", addEvent);
-    }  */
-    } 
-}
+clearBtn.addEventListener("click", function clearSave(){
+    savedList = [];
+    saveQty.innerHTML = 0;
+    while (savedItems.firstChild) {
+        savedItems.firstChild.remove();
+    }
+})
 
 function decreaseSaveQty() {
     saveQty.innerHTML = saveQtyValue -= 1;
