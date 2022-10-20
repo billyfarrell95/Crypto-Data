@@ -159,13 +159,27 @@ console.log(savedList)
         console.log(i);
         let el = document.getElementsByClassName(savedList[i])[0];
         console.log(el);
+        let del = document.getElementById(savedList[i]);
         el.addEventListener('click', () => {
+            console.log(i);
+            console.log(savedList[i]);
+            del.remove();
+            savedList.splice(savedList.indexOf(savedList[i]), 1);
+            decreaseSaveQty();
+            /* el.removeEventListener("click",); */
+        })
+   /*      function addEvent() {
+            console.log(i);
+            console.log(savedList[i]);
             let del = document.getElementById(savedList[i]);
             console.log(del)
             del.remove();
+            savedList.splice(savedList.indexOf(savedList[i]), 1);
             decreaseSaveQty();
-            /* saveQty.innerHTML = "321"; */
-        })
+        }
+        el.addEventListener("click", addEvent);
+        el.removeEventListener("click", addEvent);
+    }  */
     } 
 }
 
