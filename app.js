@@ -1,5 +1,5 @@
 let searchBar = document.querySelector("#search-bar");
-let searchBtn = document.querySelector("#search-btn")
+let searchBtn = document.querySelector("#search-btn");
 let results = document.querySelector(".results");
 let resultCard = document.querySelector(".result-card");
 let resultsMsg = document.querySelector(".results-msg");
@@ -33,6 +33,7 @@ let searchedData = {
 
 let savedList = [];
 
+// set the default results and save messages
 resultsMsg.innerHTML = defaultResultMsg;
 saveMsg.innerHTML = defaultSaveMsg;
 
@@ -41,7 +42,7 @@ async function search() {
     try {
         let inputValue = searchBar.value;
         //adds dashed in between multi-name currencies
-        let searchValue = inputValue.split(" ").join("-");
+        let searchValue = inputValue.split(" ").join("-").toLowerCase();
         let response = await fetch(`https://api.coincap.io/v2/assets/${searchValue}`);
         let asset = await response.json();
         if (asset.error === `${searchValue} not found`) {
@@ -52,6 +53,7 @@ async function search() {
             searchBar.value = "";
             console.log(`${searchValue} not found`);
         } else {
+            resultsMsg.innerHTML = defaultResultMsg;
             searchedData.name = asset.data.name;
             searchedData.symbol = asset.data.symbol;
             searchedData.price = asset.data.priceUsd;
