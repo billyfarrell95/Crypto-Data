@@ -38,8 +38,8 @@ let searchedData = {
 let savedList = [];
 
 // default states
-resultsMsg.innerHTML = defaultResultMsg;
-saveMsg.innerHTML = defaultSaveMsg;
+resultsMsg.innerText = defaultResultMsg;
+saveMsg.innerText = defaultSaveMsg;
 clearBtn.disabled = true;
 
 // pull searched crypto currency data and display it
@@ -53,12 +53,12 @@ async function search() {
         if (asset.error === `${searchValue} not found`) {
             // remove hyphens from "asset not found message"
             let msgText = `${searchValue.replace(/-/g," ")} not found`; 
-            resultsMsg.innerHTML = msgText;
-            results.innerHTML = "";
+            resultsMsg.innerText = msgText;
+            results.innerText = "";
             searchBar.value = "";
             console.log(`${searchValue} not found`);
         } else {
-            resultsMsg.innerHTML = defaultResultMsg;
+            resultsMsg.innerText = defaultResultMsg;
             searchedData.name = asset.data.name;
             searchedData.symbol = asset.data.symbol;
             searchedData.price = asset.data.priceUsd;
@@ -84,7 +84,7 @@ async function search() {
                 </div>
                 </div>
             `;
-            resultsMsg.innerHTML = `${searchedData.name} Data`;
+            resultsMsg.innerText = `${searchedData.name} Data`;
             searchBar.value = "";
             results.innerHTML = searchContent;
     }
@@ -98,7 +98,7 @@ async function search() {
 searchBar.addEventListener("keyup", () => {
     if (results.innerHTML != "" && searchBar.value != "") {
         results.innerHTML = "";
-        resultsMsg.innerHTML = defaultResultMsg;
+        resultsMsg.innerText = defaultResultMsg;
     } else {
         return;
     }
@@ -128,15 +128,12 @@ function save() {
                 <p><b>Market Cap:</b> <span class="market-cap">${searchedData.marketCap}</span></p>
                 <p><b>Supply:</b> <span class="supply">${searchedData.supply}</span></p>
             </div>
-            <div class="links">
-                <button class="save-btn ${searchedData.id}">Remove</button>
-            </div>
             </div>
         `;
     savedItems.innerHTML += savedContent;
-    resultsMsg.innerHTML = defaultResultMsg;
+    resultsMsg.innerText = defaultResultMsg;
     results.innerHTML = "";
-    saveMsg.innerHTML = "";
+    saveMsg.innerText = "";
     //save the id of the recently saved item and add it to the Saved List
     let saveItem = searchedData.id;
     savedList.push(saveItem);
@@ -147,7 +144,7 @@ function save() {
 //update the quantity of saved assets 
 
 function increaseSaveQty() {
-    saveQty.innerHTML = saveQtyValue += 1;
+    saveQty.innerText = saveQtyValue += 1;
 }
 
 function decreaseSaveQty() {
@@ -162,5 +159,6 @@ clearBtn.addEventListener("click", function clearSave(){
     while (savedItems.firstChild) {
         savedItems.firstChild.remove();
     }
+    clearBtn.disabled = true;
 })
 
