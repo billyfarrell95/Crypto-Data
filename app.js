@@ -1,6 +1,7 @@
 let searchBar = document.querySelector("#search-bar");
 let searchBtn = document.querySelector("#search-btn");
 let clearBtn = document.querySelector("#clear-btn");
+let refreshBtn = document.querySelector("#refresh-btn");
 let results = document.querySelector(".results");
 let resultCard = document.querySelector(".result-card");
 let resultsMsg = document.querySelector(".results-msg");
@@ -135,7 +136,15 @@ function save() {
     results.innerHTML = "";
     saveMsg.innerText = "";
     //save the id of the recently saved item and add it to the Saved List
-    let saveItem = searchedData.id;
+    /* let saveItem = searchedData.id; */
+    let saveItem = {
+        id: `${searchedData.id}`,
+        name: `${searchedData.name}`,
+        symbol: `${searchedData.symbol}`,
+        price: `${searchedData.price}`,
+        marketCap: `${searchedData.marketCap}`,
+        supply: `${searchedData.supply}`
+    }
     savedList.push(saveItem);
     increaseSaveQty();
     clearBtn.disabled = false;
@@ -162,3 +171,4 @@ clearBtn.addEventListener("click", function clearSave(){
     clearBtn.disabled = true;
 })
 
+//refresh saved data
