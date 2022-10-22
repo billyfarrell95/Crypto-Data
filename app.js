@@ -22,10 +22,8 @@ let saveQtyValue = 0;
 refresh saved items data
 show timestamp on the saved items 
 pull in images for the coin icons: https://cryptoicons.org/
-DONE - update the number of items saved qty
 ability to search coin symbols e.g. BTC
-fix "undefined" if search button is clicked field is empty
-delete items from saved list */
+fix "undefined" if search button is clicked field is empty*/
 
 let searchedData = {
     name: '',
@@ -33,7 +31,8 @@ let searchedData = {
     price: '',
     marketCap: '',
     supply: '',
-    id: ''
+    id: '',
+    timestamp: ''
 }
 
 let savedList = [];
@@ -58,7 +57,10 @@ async function search() {
             results.innerText = "";
             searchBar.value = "";
             console.log(`${searchValue} not found`);
-        } else {
+        } else if (inputValue === "") {
+            resultsMsg.innerText = "Enter a currency name"
+        }
+        else {
             resultsMsg.innerText = defaultResultMsg;
             searchedData.name = asset.data.name;
             searchedData.symbol = asset.data.symbol;
