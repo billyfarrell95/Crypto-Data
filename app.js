@@ -21,7 +21,6 @@ let saveQtyValue = 0;
 /* functionality left add:
 refresh saved items data
 show timestamp on the saved items 
-pull in images for the coin icons: https://cryptoicons.org/
 ability to search coin symbols e.g. BTC*/
 
 let searchedData = {
