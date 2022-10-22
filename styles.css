@@ -65,6 +65,7 @@ main {
 }
 .card-title {
     display: flex;
+    gap: 10px;
 }
 .card-title p:nth-of-type(1) {
     font-size: 20px;

@@ -22,8 +22,7 @@ let saveQtyValue = 0;
 refresh saved items data
 show timestamp on the saved items 
 pull in images for the coin icons: https://cryptoicons.org/
-ability to search coin symbols e.g. BTC
-fix "undefined" if search button is clicked field is empty*/
+ability to search coin symbols e.g. BTC*/
 
 let searchedData = {
     name: '',
@@ -72,7 +71,6 @@ async function search() {
                 <div class="result-card" id="${searchedData.id}">
                 <div class="info">
                     <div class="card-title">
-                        <img src=".">
                         <div>
                             <p class="name">${searchedData.name}</p>
                             <p class="symbol">${searchedData.symbol}</p>
@@ -121,7 +119,6 @@ function save() {
             <div class="result-card" id="${searchedData.id}">
             <div class="info">
                 <div class="card-title">
-                    <img src=".">
                     <div>
                         <p class="name">${searchedData.name}</p>
                         <p class="symbol">${searchedData.symbol}</p>
