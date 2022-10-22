@@ -134,7 +134,6 @@ function save() {
     results.innerHTML = "";
     saveMsg.innerText = "";
     //save the id of the recently saved item and add it to the Saved List
-    /* let saveItem = searchedData.id; */
     let saveItem = {
         id: `${searchedData.id}`,
         name: `${searchedData.name}`,
@@ -170,3 +169,15 @@ clearBtn.addEventListener("click", function clearSave(){
 })
 
 //refresh saved data
+
+async function refresh() {
+    try {
+        for (let i = 0; i <= savedList.length - 1; i++) {
+            let response = await fetch(`https://api.coincap.io/v2/assets/${savedList[i].id}`);
+            let asset = await response.json();
+            console.log(asset);
+        }
+    } catch {
+        console.log("refresh error");
+    }
+}
