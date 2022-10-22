@@ -20,7 +20,7 @@ let saveQtyValue = 0;
 
 /* functionality left add:
 refresh saved items data
-show timestamp on the saved items 
+show timestamp on the saved items
 ability to search coin symbols e.g. BTC*/
 
 let searchedData = {
@@ -119,13 +119,13 @@ function save() {
             <div class="info">
                 <div class="card-title">
                     <div>
-                        <p class="name">${searchedData.name}</p>
+                        <p class="${searchedData.id}-name">${searchedData.name}</p>
                         <p class="symbol">${searchedData.symbol}</p>
                     </div>
                 </div>
-                <p><b>Price:</b> <span class="price">${searchedData.price}</span></p>
-                <p><b>Market Cap:</b> <span class="market-cap">${searchedData.marketCap}</span></p>
-                <p><b>Supply:</b> <span class="supply">${searchedData.supply}</span></p>
+                <p><b>Price:</b> <span class="${searchedData.id}-price">${searchedData.price}</span></p>
+                <p><b>Market Cap:</b> <span class="${searchedData.id}-market-cap">${searchedData.marketCap}</span></p>
+                <p><b>Supply:</b> <span class="${searchedData.id}-supply">${searchedData.supply}</span></p>
             </div>
             </div>
         `;
@@ -176,6 +176,13 @@ async function refresh() {
             let response = await fetch(`https://api.coincap.io/v2/assets/${savedList[i].id}`);
             let asset = await response.json();
             console.log(asset);
+            let refreshPrice = document.getElementsByClassName(`${savedList[i].id}-price`);
+            let refreshCap = document.getElementsByClassName(`${savedList[i].id}-market-cap`);
+            let refreshSupply = document.getElementsByClassName(`${savedList[i].id}-supply`);
+            refreshPrice.innerText = "new price";
+            refreshCap.innerText = "new cap";
+            refreshSupply.innerText = "new supply"
+            console.log("made it to the bottom of refresh catch")
         }
     } catch {
         console.log("refresh error");
