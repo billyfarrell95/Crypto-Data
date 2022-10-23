@@ -19,7 +19,7 @@ let saveQtyValue = 0;
 
 
 /* functionality left add:
-refresh saved items data
+
 ability to search coin symbols e.g. BTC
 message if searched currency is already saved when trying to save
 format price, marketcap, supply, and timestamp (from unicode)*/
@@ -167,7 +167,8 @@ function decreaseSaveQty() {
 
 clearBtn.addEventListener("click", function clearSave(){
     savedList = [];
-    saveQty.innerHTML = 0;
+    saveQtyValue = 0;
+    saveQty.innerText = 0;
     while (savedItems.firstChild) {
         savedItems.firstChild.remove();
     }
