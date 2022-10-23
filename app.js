@@ -49,6 +49,9 @@ async function search() {
         let searchValue = inputValue.split(" ").join("-").toLowerCase();
         let response = await fetch(`https://api.coincap.io/v2/assets/${searchValue}`);
         let asset = await response.json();
+        if (response.ok) {
+            
+        }
         if (asset.error === `${searchValue} not found`) {
             // remove hyphens from "asset not found message"
             let msgText = `${searchValue.replace(/-/g," ")} not found`; 
@@ -58,9 +61,7 @@ async function search() {
             console.log(`${searchValue} not found`);
         } else if (inputValue === "") {
             resultsMsg.innerText = "Enter a currency name"
-        }
-        else {
-            console.log(`${inputValue} lsdkflskdl`)
+        } else {
             resultsMsg.innerText = defaultResultMsg;
             searchedData.name = asset.data.name;
             searchedData.symbol = asset.data.symbol;
@@ -187,7 +188,6 @@ async function refresh() {
             refreshPrice.innerText = "new price";
             refreshCap.innerText = "new cap";
             refreshSupply.innerText = "new supply"
-            console.log("made it to the bottom of refresh catch")
         }
     } catch {
         console.log("refresh error");
