@@ -49,9 +49,6 @@ async function search() {
         let searchValue = inputValue.split(" ").join("-").toLowerCase();
         let response = await fetch(`https://api.coincap.io/v2/assets/${searchValue}`);
         let asset = await response.json();
-        if (response.ok) {
-            
-        }
         if (asset.error === `${searchValue} not found`) {
             // remove hyphens from "asset not found message"
             let msgText = `${searchValue.replace(/-/g," ")} not found`; 
@@ -79,7 +76,7 @@ async function search() {
                             <p class="symbol">${searchedData.symbol}</p>
                         </div>
                     </div>
-                    <p><b>Price:</b> <span class="price">${searchedData.price}</span></p>
+                    <p><b>Price:</b> <span class="price">$${searchedData.price}</span></p>
                     <p><b>Market Cap:</b> <span class="market-cap">${searchedData.marketCap}</span></p>
                     <p><b>Supply:</b> <span class="supply">${searchedData.supply}</span></p>
                     <p><b>Timestamp:</b> <span class="timestamp">${searchedData.timestamp}</span></p>
@@ -128,7 +125,7 @@ function save() {
                         <p class="symbol">${searchedData.symbol}</p>
                     </div>
                 </div>
-                <p><b>Price:</b> <span class="price" id="${searchedData.id}-price">${searchedData.price}</span></p>
+                <p><b>Price:</b> <span class="price" id="${searchedData.id}-price">$${searchedData.price}</span></p>
                 <p><b>Market Cap:</b> <span class="market-cap" id="${searchedData.id}-market-cap">${searchedData.marketCap}</span></p>
                 <p><b>Supply:</b> <span class="supply" id="${searchedData.id}-supply">${searchedData.supply}</span></p>
                 <p><b>Timestamp:</b> <span class="timestamp" id="${searchedData.id}-timestamp">${searchedData.timestamp}</span></p>
