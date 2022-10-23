@@ -20,8 +20,9 @@ let saveQtyValue = 0;
 
 /* functionality left add:
 refresh saved items data
-show timestamp on the saved items
-ability to search coin symbols e.g. BTC*/
+ability to search coin symbols e.g. BTC
+message if searched currency is already saved when trying to save
+format price, marketcap, supply, and timestamp (from unicode)*/
 
 let searchedData = {
     name: '',
@@ -59,6 +60,7 @@ async function search() {
             resultsMsg.innerText = "Enter a currency name"
         }
         else {
+            console.log(`${inputValue} lsdkflskdl`)
             resultsMsg.innerText = defaultResultMsg;
             searchedData.name = asset.data.name;
             searchedData.symbol = asset.data.symbol;
@@ -66,6 +68,7 @@ async function search() {
             searchedData.marketCap = asset.data.marketCapUsd;
             searchedData.supply = asset.data.supply;
             searchedData.id = asset.data.id;
+            searchedData.timestamp = asset.timestamp;
             const searchContent = `
                 <div class="result-card" id="${searchedData.id}">
                 <div class="info">
@@ -78,6 +81,7 @@ async function search() {
                     <p><b>Price:</b> <span class="price">${searchedData.price}</span></p>
                     <p><b>Market Cap:</b> <span class="market-cap">${searchedData.marketCap}</span></p>
                     <p><b>Supply:</b> <span class="supply">${searchedData.supply}</span></p>
+                    <p><b>Timestamp:</b> <span class="timestamp">${searchedData.timestamp}</span></p>
                 </div>
                 <div class="links">
                     <button class="btn" onclick="save()">Save</button>
@@ -126,6 +130,7 @@ function save() {
                 <p><b>Price:</b> <span class="${searchedData.id}-price">${searchedData.price}</span></p>
                 <p><b>Market Cap:</b> <span class="${searchedData.id}-market-cap">${searchedData.marketCap}</span></p>
                 <p><b>Supply:</b> <span class="${searchedData.id}-supply">${searchedData.supply}</span></p>
+                <p><b>Timestamp:</b> <span class="${searchedData.id}timestamp">${searchedData.timestamp}</span></p>
             </div>
             </div>
         `;
