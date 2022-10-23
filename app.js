@@ -124,14 +124,14 @@ function save() {
             <div class="info">
                 <div class="card-title">
                     <div>
-                        <p class="${searchedData.id}-name">${searchedData.name}</p>
+                        <p class="name">${searchedData.name}</p>
                         <p class="symbol">${searchedData.symbol}</p>
                     </div>
                 </div>
-                <p><b>Price:</b> <span class="${searchedData.id}-price">${searchedData.price}</span></p>
-                <p><b>Market Cap:</b> <span class="${searchedData.id}-market-cap">${searchedData.marketCap}</span></p>
-                <p><b>Supply:</b> <span class="${searchedData.id}-supply">${searchedData.supply}</span></p>
-                <p><b>Timestamp:</b> <span class="${searchedData.id}timestamp">${searchedData.timestamp}</span></p>
+                <p><b>Price:</b> <span class="price" id="${searchedData.id}-price">${searchedData.price}</span></p>
+                <p><b>Market Cap:</b> <span class="market-cap" id="${searchedData.id}-market-cap">${searchedData.marketCap}</span></p>
+                <p><b>Supply:</b> <span class="supply" id="${searchedData.id}-supply">${searchedData.supply}</span></p>
+                <p><b>Timestamp:</b> <span class="timestamp" id="${searchedData.id}-timestamp">${searchedData.timestamp}</span></p>
             </div>
             </div>
         `;
@@ -179,15 +179,19 @@ clearBtn.addEventListener("click", function clearSave(){
 async function refresh() {
     try {
         for (let i = 0; i <= savedList.length - 1; i++) {
-            let response = await fetch(`https://api.coincap.io/v2/assets/${savedList[i].id}`);
+            let refreshAsset = savedList[i].id;
+            let response = await fetch(`https://api.coincap.io/v2/assets/${refreshAsset}`);
             let asset = await response.json();
             console.log(asset);
-            let refreshPrice = document.getElementsByClassName(`${savedList[i].id}-price`);
-            let refreshCap = document.getElementsByClassName(`${savedList[i].id}-market-cap`);
-            let refreshSupply = document.getElementsByClassName(`${savedList[i].id}-supply`);
-            refreshPrice.innerText = "new price";
-            refreshCap.innerText = "new cap";
-            refreshSupply.innerText = "new supply"
+            let refreshPrice = document.getElementById(`${refreshAsset}-price`);
+            let refreshCap = document.getElementById(`${refreshAsset}-market-cap`);
+            let refreshSupply = document.getElementById(`${refreshAsset}-supply`);
+            refreshPrice.innerText = asset.data.priceUsd;
+            refreshCap.innerText = asset.data.marketCapUsd;
+            refreshSupply.innerText = asset.data.supply;
+            /* refreshPrice.innerText = `new ${i}`;
+            refreshCap.innerText = `new ${i}`;
+            refreshSupply.innerText = `new ${i}`; */
         }
     } catch {
         console.log("refresh error");
