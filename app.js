@@ -116,6 +116,14 @@ searchBar.addEventListener("keydown", (event) => {
 
 // save the search crypto asset
 function save() {
+/*     for (let i = 0; i <= savedList.length; i++) {
+        console.log(i);
+        if(savedList[i].id) {
+            console.log("already saved")
+        } else {
+            console.log("item saved")
+        }
+    } */
     const savedContent = `
             <div class="result-card" id="${searchedData.id}">
             <div class="info">
@@ -175,21 +183,27 @@ clearBtn.addEventListener("click", function clearSave(){
 //refresh saved data
 
 async function refresh() {
+    let refreshPrice;
+    let refreshCap;
+    let refreshSupply;
+    let refreshTimestamp;
     try {
         for (let i = 0; i <= savedList.length - 1; i++) {
             let refreshAsset = savedList[i].id;
             let response = await fetch(`https://api.coincap.io/v2/assets/${refreshAsset}`);
             let asset = await response.json();
             console.log(asset);
-            let refreshPrice = document.getElementById(`${refreshAsset}-price`);
-            let refreshCap = document.getElementById(`${refreshAsset}-market-cap`);
-            let refreshSupply = document.getElementById(`${refreshAsset}-supply`);
+            refreshPrice = document.getElementById(`${refreshAsset}-price`);
+            refreshCap = document.getElementById(`${refreshAsset}-market-cap`);
+            refreshSupply = document.getElementById(`${refreshAsset}-supply`);
+            refreshTimestamp = document.getElementById(`${refreshAsset}-timestamp`)
+            /* refreshPrice.innerText = asset.data.priceUsd;
+            refreshCap.innerText = asset.data.marketCapUsd;
+            refreshSupply.innerText = asset.data.supply; */
             refreshPrice.innerText = asset.data.priceUsd;
             refreshCap.innerText = asset.data.marketCapUsd;
             refreshSupply.innerText = asset.data.supply;
-            /* refreshPrice.innerText = `new ${i}`;
-            refreshCap.innerText = `new ${i}`;
-            refreshSupply.innerText = `new ${i}`; */
+            refreshTimestamp.innerText = asset.timestamp;
         }
     } catch {
         console.log("refresh error");
