@@ -22,7 +22,8 @@ let saveQtyValue = 0;
 
 ability to search coin symbols e.g. BTC
 message if searched currency is already saved when trying to save
-format price, marketcap, supply, and timestamp (from unicode)*/
+format price, marketcap, supply, and timestamp (from unicode)
+check for any others bugs or issues*/
 
 let searchedData = {
     name: '',
@@ -82,7 +83,7 @@ async function search() {
                     <p><b>Timestamp:</b> <span class="timestamp">${searchedData.timestamp}</span></p>
                 </div>
                 <div class="links">
-                    <button class="btn" onclick="save()">Save</button>
+                    <button class="btn save-btn" onclick="save()">Save</button>
                 </div>
                 </div>
             `;
@@ -116,46 +117,48 @@ searchBar.addEventListener("keydown", (event) => {
 
 // save the search crypto asset
 function save() {
-/*     for (let i = 0; i <= savedList.length; i++) {
-        console.log(i);
-        if(savedList[i].id) {
-            console.log("already saved")
-        } else {
-            console.log("item saved")
-        }
-    } */
-    const savedContent = `
-            <div class="result-card" id="${searchedData.id}">
-            <div class="info">
-                <div class="card-title">
-                    <div>
-                        <p class="name">${searchedData.name}</p>
-                        <p class="symbol">${searchedData.symbol}</p>
+    let checkIfSaved = document.getElementById(`${searchedData.id}-save`);
+    console.log(checkIfSaved);
+        if (checkIfSaved === null) {
+            console.log("item saved");
+            const savedContent = `
+                <div class="result-card" id="${searchedData.id}-save">
+                <div class="info">
+                    <div class="card-title">
+                        <div>
+                            <p class="name">${searchedData.name}</p>
+                            <p class="symbol">${searchedData.symbol}</p>
+                        </div>
                     </div>
+                    <p><b>Price:</b> <span class="price" id="${searchedData.id}-price">$${searchedData.price}</span></p>
+                    <p><b>Market Cap:</b> <span class="market-cap" id="${searchedData.id}-market-cap">${searchedData.marketCap}</span></p>
+                    <p><b>Supply:</b> <span class="supply" id="${searchedData.id}-supply">${searchedData.supply}</span></p>
+                    <p><b>Timestamp:</b> <span class="timestamp" id="${searchedData.id}-timestamp">${searchedData.timestamp}</span></p>
                 </div>
-                <p><b>Price:</b> <span class="price" id="${searchedData.id}-price">$${searchedData.price}</span></p>
-                <p><b>Market Cap:</b> <span class="market-cap" id="${searchedData.id}-market-cap">${searchedData.marketCap}</span></p>
-                <p><b>Supply:</b> <span class="supply" id="${searchedData.id}-supply">${searchedData.supply}</span></p>
-                <p><b>Timestamp:</b> <span class="timestamp" id="${searchedData.id}-timestamp">${searchedData.timestamp}</span></p>
-            </div>
-            </div>
-        `;
-    savedItems.innerHTML += savedContent;
-    resultsMsg.innerText = defaultResultMsg;
-    results.innerHTML = "";
-    saveMsg.innerText = "";
-    //save the id of the recently saved item and add it to the Saved List
-    let saveItem = {
-        id: `${searchedData.id}`,
-        name: `${searchedData.name}`,
-        symbol: `${searchedData.symbol}`,
-        price: `${searchedData.price}`,
-        marketCap: `${searchedData.marketCap}`,
-        supply: `${searchedData.supply}`
-    }
-    savedList.push(saveItem);
-    increaseSaveQty();
-    clearBtn.disabled = false;
+                </div>
+            `;
+        savedItems.innerHTML += savedContent;
+        resultsMsg.innerText = defaultResultMsg;
+        results.innerHTML = "";
+        saveMsg.innerText = "";
+        //save the id of the recently saved item and add it to the Saved List
+        let saveItem = {
+            id: `${searchedData.id}`,
+            name: `${searchedData.name}`,
+            symbol: `${searchedData.symbol}`,
+            price: `${searchedData.price}`,
+            marketCap: `${searchedData.marketCap}`,
+            supply: `${searchedData.supply}`
+        }
+        savedList.push(saveItem);
+        increaseSaveQty();
+        clearBtn.disabled = false;
+        } else {
+            refresh();
+            results.innerHTML = "";
+            resultsMsg.innerText = `${searchedData.id} is already saved. Saved data has been refreshed.`;
+        } 
+/*         resultsMsg = defaultResultMsg; */
 }
 
 //update the quantity of saved assets 
