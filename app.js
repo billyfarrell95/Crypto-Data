@@ -16,12 +16,12 @@ let saveMsg = document.querySelector(".save-msg");
 let defaultSaveMsg = "Saved crypto currencies will display here";
 let saveQty = document.getElementById("saved-qty");
 let saveQtyValue = 0;
+let checkIfSaved;
 
 
 /* functionality left add:
 
 ability to search coin symbols e.g. BTC
-message if searched currency is already saved when trying to save
 format price, marketcap, supply, and timestamp (from unicode)
 check for any others bugs or issues*/
 
@@ -117,7 +117,8 @@ searchBar.addEventListener("keydown", (event) => {
 
 // save the search crypto asset
 function save() {
-    let checkIfSaved = document.getElementById(`${searchedData.id}-save`);
+    /* let checkIfSaved = document.getElementById(`${searchedData.id}-save`); */
+    checkIfSaved = document.getElementById(`${searchedData.id}-save`);
     console.log(checkIfSaved);
         if (checkIfSaved === null) {
             console.log("item saved");
@@ -156,7 +157,7 @@ function save() {
         } else {
             refresh();
             results.innerHTML = "";
-            resultsMsg.innerText = `${searchedData.id} is already saved. Saved data has been refreshed.`;
+            resultsMsg.innerText = `${searchedData.name} is already saved. Saved data has been refreshed.`;
         } 
 /*         resultsMsg = defaultResultMsg; */
 }
@@ -172,7 +173,6 @@ function decreaseSaveQty() {
 }
 
 //delete saved items from the list
-
 clearBtn.addEventListener("click", function clearSave(){
     savedList = [];
     saveQtyValue = 0;
@@ -184,7 +184,6 @@ clearBtn.addEventListener("click", function clearSave(){
 })
 
 //refresh saved data
-
 async function refresh() {
     let refreshPrice;
     let refreshCap;
