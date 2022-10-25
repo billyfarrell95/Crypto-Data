@@ -23,7 +23,7 @@ let checkIfSaved;
 
 ability to search coin symbols e.g. BTC
 format price, marketcap, supply, and timestamp (from unicode)
-check for any others bugs or issues*/
+check for any others bugs or issues */
 
 let searchedData = {
     name: '',
@@ -117,7 +117,6 @@ searchBar.addEventListener("keydown", (event) => {
 
 // save the search crypto asset
 function save() {
-    /* let checkIfSaved = document.getElementById(`${searchedData.id}-save`); */
     checkIfSaved = document.getElementById(`${searchedData.id}-save`);
     console.log(checkIfSaved);
         if (checkIfSaved === null) {
@@ -163,7 +162,6 @@ function save() {
 }
 
 //update the quantity of saved assets 
-
 function increaseSaveQty() {
     saveQty.innerText = saveQtyValue += 1;
 }
