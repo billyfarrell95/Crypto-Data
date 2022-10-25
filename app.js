@@ -18,13 +18,19 @@ let saveQty = document.getElementById("saved-qty");
 let saveQtyValue = 0;
 let checkIfSaved;
 
+const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    // These options are needed to round to whole numbers if that's what you want.
+    //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+    //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+  });
+
 
 /* functionality left add:
-
-ability to search coin symbols e.g. BTC
-if item is already saved, the "save" button should say "refresh"
 format price, marketcap, supply, and timestamp (from unicode)
-check for any others bugs or issues */
+check for any others bugs or issues 
+saved list persists on page reload*/
 
 let searchedData = {
     name: '',
@@ -64,9 +70,13 @@ async function search() {
             resultsMsg.innerText = defaultResultMsg;
             searchedData.name = asset.data.name;
             searchedData.symbol = asset.data.symbol;
-            searchedData.price = asset.data.priceUsd;
-            searchedData.marketCap = asset.data.marketCapUsd;
-            searchedData.supply = asset.data.supply;
+            // unary plus operator
+            let price = +asset.data.priceUsd;
+            searchedData.price = price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+            let cap = +asset.data.marketCapUsd;
+            searchedData.marketCap = cap.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+            let supply = +asset.data.supply;
+            searchedData.supply = supply.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
             searchedData.id = asset.data.id;
             searchedData.timestamp = asset.timestamp;
             const searchContent = `
@@ -79,7 +89,7 @@ async function search() {
                         </div>
                     </div>
                     <p><b>Price:</b> <span class="price">$${searchedData.price}</span></p>
-                    <p><b>Market Cap:</b> <span class="market-cap">${searchedData.marketCap}</span></p>
+                    <p><b>Market Cap:</b> <span class="market-cap">$${searchedData.marketCap}</span></p>
                     <p><b>Supply:</b> <span class="supply">${searchedData.supply}</span></p>
                     <p><b>Timestamp:</b> <span class="timestamp">${searchedData.timestamp}</span></p>
                 </div>
@@ -199,10 +209,7 @@ async function refresh() {
             refreshPrice = document.getElementById(`${refreshAsset}-price`);
             refreshCap = document.getElementById(`${refreshAsset}-market-cap`);
             refreshSupply = document.getElementById(`${refreshAsset}-supply`);
-            refreshTimestamp = document.getElementById(`${refreshAsset}-timestamp`)
-            /* refreshPrice.innerText = asset.data.priceUsd;
-            refreshCap.innerText = asset.data.marketCapUsd;
-            refreshSupply.innerText = asset.data.supply; */
+            refreshTimestamp = document.getElementById(`${refreshAsset}-timestamp`);
             refreshPrice.innerText = asset.data.priceUsd;
             refreshCap.innerText = asset.data.marketCapUsd;
             refreshSupply.innerText = asset.data.supply;
@@ -212,3 +219,10 @@ async function refresh() {
         console.log("refresh error");
     }
 }
+
+/* let price = +asset.data.priceUsd;
+searchedData.price = price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+let cap = +asset.data.marketCapUsd;
+searchedData.marketCap = cap.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+let supply = +asset.data.supply;
+searchedData.supply = supply.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'); */
