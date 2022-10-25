@@ -165,6 +165,7 @@ function save() {
         increaseSaveQty();
         clearBtn.disabled = false;
         refreshBtn.disabled = false;
+        localStorage.setItem()
         } else {
             refresh();
             results.innerHTML = "";
@@ -219,10 +220,3 @@ async function refresh() {
         console.log("refresh error");
     }
 }
-
-/* let price = +asset.data.priceUsd;
-searchedData.price = price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-let cap = +asset.data.marketCapUsd;
-searchedData.marketCap = cap.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-let supply = +asset.data.supply;
-searchedData.supply = supply.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'); */
