@@ -22,6 +22,7 @@ let checkIfSaved;
 /* functionality left add:
 
 ability to search coin symbols e.g. BTC
+if item is already saved, the "save" button should say "refresh"
 format price, marketcap, supply, and timestamp (from unicode)
 check for any others bugs or issues */
 
