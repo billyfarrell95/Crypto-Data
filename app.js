@@ -154,6 +154,7 @@ function save() {
         savedList.push(saveItem);
         increaseSaveQty();
         clearBtn.disabled = false;
+        refreshBtn.disabled = false;
         } else {
             refresh();
             results.innerHTML = "";
@@ -180,6 +181,7 @@ clearBtn.addEventListener("click", function clearSave(){
         savedItems.firstChild.remove();
     }
     clearBtn.disabled = true;
+    refreshBtn.disabled = true;
 })
 
 //refresh saved data

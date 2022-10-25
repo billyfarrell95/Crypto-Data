@@ -157,10 +157,22 @@ button {
     background-color: var(--red-hover);
 }
 
+.clear-btn:disabled {
+    background-color: var(--red);
+    opacity: 50%;
+    cursor: default;
+}
+
 .refresh-btn {
     background-color: var(--primary-color);
 }
 
 .refresh-btn:hover {
     background-color: var(--primary-hover);
+}
+
+.refresh-btn:disabled {
+    background-color: var(--primary-color);
+    cursor: default;
+    opacity: 50%;
 }
