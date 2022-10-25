@@ -18,17 +18,8 @@ let saveQty = document.getElementById("saved-qty");
 let saveQtyValue = 0;
 let checkIfSaved;
 
-const formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    // These options are needed to round to whole numbers if that's what you want.
-    //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
-    //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
-  });
-
-
 /* functionality left add:
-format price, marketcap, supply, and timestamp (from unicode)
+format timestamp
 check for any others bugs or issues 
 saved list persists on page reload*/
 
@@ -165,7 +156,6 @@ function save() {
         increaseSaveQty();
         clearBtn.disabled = false;
         refreshBtn.disabled = false;
-        localStorage.setItem()
         } else {
             refresh();
             results.innerHTML = "";
@@ -211,9 +201,12 @@ async function refresh() {
             refreshCap = document.getElementById(`${refreshAsset}-market-cap`);
             refreshSupply = document.getElementById(`${refreshAsset}-supply`);
             refreshTimestamp = document.getElementById(`${refreshAsset}-timestamp`);
-            refreshPrice.innerText = asset.data.priceUsd;
-            refreshCap.innerText = asset.data.marketCapUsd;
-            refreshSupply.innerText = asset.data.supply;
+            let price = +asset.data.priceUsd;
+            refreshPrice.innerText = "$" + price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+            let cap = +asset.data.marketCapUsd;
+            refreshCap.innerText = "$" + cap.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+            let supply = +asset.data.supply;
+            refreshSupply.innerText = supply.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
             refreshTimestamp.innerText = asset.timestamp;
         }
     } catch {

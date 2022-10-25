@@ -77,7 +77,6 @@ main {
 }
 .results-msg {
     font-style: italic;
-    color: #6A6C80;
 }
 .card-title {
     display: flex;
@@ -101,11 +100,6 @@ main {
     overflow: auto;
 }
 .save-msg {
-    font-style: italic;
-    color: #6A6C80;
-}
-
-.saved-qty {
     font-style: italic;
 }
 
