@@ -52,7 +52,7 @@ async function search() {
         let asset = await response.json();
         if (asset.error === `${searchValue} not found`) {
             // remove hyphens from "asset not found message"
-            let msgText = `${searchValue.replace(/-/g," ")} not found`; 
+            let msgText = `"${searchValue.replace(/-/g," ")}" not found`; 
             resultsMsg.innerText = msgText;
             results.innerText = "";
             searchBar.value = "";
@@ -156,7 +156,7 @@ function save() {
         } else {
             refresh();
             results.innerHTML = "";
-            resultsMsg.innerText = `${searchedData.name} is already saved. Saved data has been refreshed.`;
+            resultsMsg.innerText = `"${searchedData.name}" is already saved. Saved data has been refreshed.`;
         } 
 /*         resultsMsg = defaultResultMsg; */
 }
