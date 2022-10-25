@@ -97,6 +97,8 @@ main {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    height: 600px;
+    overflow: auto;
 }
 .save-msg {
     font-style: italic;
@@ -105,6 +107,10 @@ main {
 
 .saved-qty {
     font-style: italic;
+}
+
+.name {
+    padding-bottom: 5px;
 }
 
 /* Buttons */

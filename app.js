@@ -48,7 +48,7 @@ async function search() {
     try {
         let inputValue = searchBar.value;
         //adds dashed in between multi-name currencies
-        let searchValue = inputValue.split(" ").join("-").toLowerCase();
+        let searchValue = inputValue.replace(/\s+/g, '-').toLowerCase();
         let response = await fetch(`https://api.coincap.io/v2/assets/${searchValue}`);
         let asset = await response.json();
         if (asset.error === `${searchValue} not found`) {
