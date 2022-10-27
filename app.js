@@ -69,7 +69,7 @@ async function search() {
             let supply = +asset.data.supply;
             searchedData.supply = supply.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
             searchedData.id = asset.data.id;
-            searchedData.timestamp = asset.timestamp;
+            /* searchedData.timestamp = asset.timestamp; */
             const searchContent = `
                 <div class="result-card" id="${searchedData.id}">
                 <div class="info">
@@ -133,7 +133,7 @@ function save() {
                         </div>
                     </div>
                     <p><b>Price:</b> <span class="price" id="${searchedData.id}-price">$${searchedData.price}</span></p>
-                    <p><b>Market Cap:</b> <span class="market-cap" id="${searchedData.id}-market-cap">${searchedData.marketCap}</span></p>
+                    <p><b>Market Cap:</b> <span class="market-cap" id="${searchedData.id}-market-cap">$${searchedData.marketCap}</span></p>
                     <p><b>Supply:</b> <span class="supply" id="${searchedData.id}-supply">${searchedData.supply}</span></p>
                     <p><b>Timestamp:</b> <span class="timestamp" id="${searchedData.id}-timestamp">${searchedData.timestamp}</span></p>
                 </div>
