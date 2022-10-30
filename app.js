@@ -17,6 +17,7 @@ let defaultSaveMsg = "Saved crypto currencies will display here";
 let saveQty = document.getElementById("saved-qty");
 let saveQtyValue = 0;
 let checkIfSaved;
+let globalTimestamp;
 
 /* functionality left add:
 format timestamp
@@ -40,6 +41,13 @@ resultsMsg.innerText = defaultResultMsg;
 saveMsg.innerText = defaultSaveMsg;
 clearBtn.disabled = true;
 
+function getDate() {
+    let timestamp = new Date().getTime();
+    let date = new Date(timestamp);
+    // Format date and time
+    globalTimestamp = date.toLocaleString('en-US');
+}
+
 // pull searched crypto currency data and display it
 async function search() {
     try {
@@ -58,6 +66,7 @@ async function search() {
         } else if (inputValue === "") {
             resultsMsg.innerText = "Enter a currency name"
         } else {
+            getDate();
             resultsMsg.innerText = defaultResultMsg;
             searchedData.name = asset.data.name;
             searchedData.symbol = asset.data.symbol;
@@ -82,7 +91,7 @@ async function search() {
                     <p><b>Price:</b> <span class="price">$${searchedData.price}</span></p>
                     <p><b>Market Cap:</b> <span class="market-cap">$${searchedData.marketCap}</span></p>
                     <p><b>Supply:</b> <span class="supply">${searchedData.supply}</span></p>
-                    <p><b>Timestamp:</b> <span class="timestamp">${searchedData.timestamp}</span></p>
+                    <p><b>Timestamp:</b> <span class="timestamp">${globalTimestamp}</span></p>
                 </div>
                 <div class="links">
                     <button class="btn save-btn" onclick="save()">Save</button>
@@ -135,7 +144,7 @@ function save() {
                     <p><b>Price:</b> <span class="price" id="${searchedData.id}-price">$${searchedData.price}</span></p>
                     <p><b>Market Cap:</b> <span class="market-cap" id="${searchedData.id}-market-cap">$${searchedData.marketCap}</span></p>
                     <p><b>Supply:</b> <span class="supply" id="${searchedData.id}-supply">${searchedData.supply}</span></p>
-                    <p><b>Timestamp:</b> <span class="timestamp" id="${searchedData.id}-timestamp">${searchedData.timestamp}</span></p>
+                    <p><b>Timestamp:</b> <span class="timestamp" id="${searchedData.id}-timestamp">${globalTimestamp}</span></p>
                 </div>
                 </div>
             `;
@@ -191,6 +200,7 @@ async function refresh() {
     let refreshCap;
     let refreshSupply;
     let refreshTimestamp;
+    getDate();
     try {
         for (let i = 0; i <= savedList.length - 1; i++) {
             let refreshAsset = savedList[i].id;
@@ -207,7 +217,7 @@ async function refresh() {
             refreshCap.innerText = "$" + cap.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
             let supply = +asset.data.supply;
             refreshSupply.innerText = supply.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-            refreshTimestamp.innerText = asset.timestamp;
+            refreshTimestamp.innerText = globalTimestamp;
         }
     } catch {
         console.log("refresh error");
