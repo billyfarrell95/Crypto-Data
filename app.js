@@ -18,11 +18,36 @@ let saveQty = document.getElementById("saved-qty");
 let saveQtyValue = 0;
 let checkIfSaved;
 let globalTimestamp;
+let savedList = [];
 
-/* functionality left add:
-format timestamp
-check for any others bugs or issues 
-saved list persists on page reload*/
+// default states for UI messages and buttons
+resultsMsg.innerText = defaultResultMsg;
+saveMsg.innerText = defaultSaveMsg;
+clearBtn.disabled = true;
+refreshBtn.disabled = true;
+
+// check for previous session storage
+let localSaved = localStorage.getItem('savedItems');
+let localSavedList = localStorage.getItem('savedList');
+let localSavedQty = localStorage.getItem('savedQTY')
+
+// Update the saved list if there are any saved items
+if (localSaved) {
+    savedItems.innerHTML = localSaved;
+    refreshBtn.disabled = false;
+    clearBtn.disabled = false;
+    saveMsg.innerText = "";
+}
+
+// set savedList equal to the data from local storage
+ if (localSavedList) {
+    savedList = JSON.parse(localSavedList);
+ }
+// update the save quantity from local save
+
+ if (localSavedQty) {
+    saveQty.innerText = localSavedQty;
+ }
 
 let searchedData = {
     name: '',
@@ -33,13 +58,6 @@ let searchedData = {
     id: '',
     timestamp: ''
 }
-
-let savedList = [];
-
-// default states
-resultsMsg.innerText = defaultResultMsg;
-saveMsg.innerText = defaultSaveMsg;
-clearBtn.disabled = true;
 
 function getDate() {
     let timestamp = new Date().getTime();
@@ -108,7 +126,7 @@ async function search() {
     }
 }
 
-// clears search result and sets default search message when enter new crypto coin
+// clears search result and sets default search message when entering new search
 searchBar.addEventListener("keyup", () => {
     if (results.innerHTML != "" && searchBar.value != "") {
         results.innerHTML = "";
@@ -170,16 +188,16 @@ function save() {
             results.innerHTML = "";
             resultsMsg.innerText = `"${searchedData.name}" is already saved. Saved data has been refreshed.`;
         } 
-/*         resultsMsg = defaultResultMsg; */
+        //save data to local storage
+        localStorage.setItem('savedItems', savedItems.innerHTML);
+        localStorage.setItem('savedList', JSON.stringify(savedList));
 }
 
 //update the quantity of saved assets 
 function increaseSaveQty() {
     saveQty.innerText = saveQtyValue += 1;
-}
-
-function decreaseSaveQty() {
-    saveQty.innerHTML = saveQtyValue -= 1;
+    //save the quantity to local storage
+    localStorage.setItem('savedQTY', saveQty.innerText);
 }
 
 //delete saved items from the list
@@ -192,6 +210,8 @@ clearBtn.addEventListener("click", function clearSave(){
     }
     clearBtn.disabled = true;
     refreshBtn.disabled = true;
+    saveMsg.innerText = defaultSaveMsg;
+    localStorage.clear();
 })
 
 //refresh saved data
@@ -222,4 +242,6 @@ async function refresh() {
     } catch {
         console.log("refresh error");
     }
+    // on saved items refresh, update the local storage with the new data
+    localStorage.setItem('savedItems', savedItems.innerHTML);
 }
