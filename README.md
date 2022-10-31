@@ -1,5 +1,5 @@
 # Crypto Data
- Search for, view, and save crypocurrency assets data
+ Search for, view, and save crypocurrencies data
 
  Built using data from CoinCap API 2.0: https://docs.coincap.io/
 
