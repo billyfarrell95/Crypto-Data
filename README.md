@@ -1,7 +1,19 @@
 # CryptoData
  Search for, view, and save cryptocurrencies data.
+ 
+ [View Live Site](https://cheerful-kashata-8a50fe.netlify.app/)
+ 
+ ## Description
+ 
+ This application allows users to:
+ * Search for cryptocurrencies by name
+ * Save the searched currency to a list (that persists until manually clear via "Clear List" button or browser history)
+ * Refresh the data to view the current price, market cap, supply
+ * View a timestamp of when the data was searched, saved, or refreshed
 
- Built using data from CoinCap API 2.0: 
+ > Built using data from [CoinCap API 2.0](https://docs.coincap.io/)
+ 
+ ## Screenshots
  
 ![CryptoData - screen1](https://user-images.githubusercontent.com/25358057/199055104-5bc17610-ab7e-4acb-a587-8910d79d393e.jpg)
 
