@@ -55,6 +55,7 @@ html {
 }
 
 /*********** Page Layout ***************/
+
 .container {
     max-width: 1400px;
     margin-inline: auto;
@@ -97,6 +98,20 @@ main {
     width: 100%;
 }
 
+.footer {
+    background-color: var(--primary-color);
+    color: white;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding-block: 15px;
+    font-size: 12px;
+}
+
+.footer a {
+    color: white;
+}
 /***** Search and Saved Cards ********/
 .card-title {
     display: flex;
