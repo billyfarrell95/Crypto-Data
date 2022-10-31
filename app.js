@@ -29,7 +29,7 @@ refreshBtn.disabled = true;
 // check for previous session storage
 let localSaved = localStorage.getItem('savedItems');
 let localSavedList = localStorage.getItem('savedList');
-let localSavedQty = localStorage.getItem('savedQTY')
+let localSavedQty = localStorage.getItem('savedQTY');
 
 // Update the saved list if there are any saved items
 if (localSaved) {
