@@ -3,7 +3,7 @@
 
  Built using data from CoinCap API 2.0: 
  
- https://docs.coincap.io/![CryptoData - screen1](https://user-images.githubusercontent.com/25358057/199054565-fcadd598-6cb7-4267-b70b-9de5b2ac14eb.jpg)
+![CryptoData - screen1](https://user-images.githubusercontent.com/25358057/199055104-5bc17610-ab7e-4acb-a587-8910d79d393e.jpg)
 
 ![CryptoData - screen2](https://user-images.githubusercontent.com/25358057/199054612-2836f114-2575-4de5-b72e-85c8f85937df.jpg)
 
