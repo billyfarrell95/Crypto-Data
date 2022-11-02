@@ -1,7 +1,7 @@
 # CryptoData
  Search for, view, and save cryptocurrencies data.
  
- [View Live Site](https://cheerful-kashata-8a50fe.netlify.app/)
+ [View Live Site](https://cryptodata-heyitsbilly.netlify.app/)
  
  ## Description
  
