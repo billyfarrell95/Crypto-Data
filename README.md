@@ -6,7 +6,7 @@
  ## Description
  
  * Search for cryptocurrencies by name
- * Save the searched currency to a list (that persists until manually clear via "Clear List" button or browser history)
+ * Save the searched currency to a list (localStorage)
  * Refresh the data to view the current price, market cap, supply
  * View a timestamp of when the data was searched, saved, or refreshed
 
