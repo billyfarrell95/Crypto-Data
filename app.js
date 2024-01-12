@@ -69,7 +69,7 @@ function getDate() {
 // pull searched crypto currency data and display it
 async function search() {
     try {
-        let inputValue = searchBar.value;
+        let inputValue = searchBar.value.trim();
         //adds dashed in between multi-name currencies
         let searchValue = inputValue.replace(/\s+/g, '-').toLowerCase();
         let response = await fetch(`https://api.coincap.io/v2/assets/${searchValue}`);
