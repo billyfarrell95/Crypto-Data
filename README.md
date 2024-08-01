@@ -1,7 +1,7 @@
 # CryptoData
  Search for, view, and save cryptocurrencies data.
  
- [View Live Site](https://cryptodata-heyitsbilly.netlify.app/)
+ [View Live Site](https://cryptodata-bfarrell.netlify.app/)
  
  ## Description
  
